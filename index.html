@@ -1,1 +1,424 @@
-Hello, Nekoka!
+<html>
+<meta charset="utf-8"/>
+<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+<title>Nekoka</title>
+<style type="text/css">
+/* The navigation bar */
+.navbar {
+  padding: 10 0 10 0;
+  background-color: #ffffffdd;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+a:link { color: #4866FF; text-decoration: none }
+a:visited { color: #4866FF; text-decoration: none }
+a:active {  color: #88A6FF; text-decoration: none }
+body {
+  font-family: Geneva, Arial, Helvetica, sans-serif;
+  color: #002164;
+  background-color: white;
+}
+li {
+  margin: 7 0;
+}
+.narrowlist li {
+  margin: 2 0;
+}
+</style>
+</html>
+
+<body>
+
+<div class="navbar">
+<table>
+<tr valign=top><td width=100>
+<td>
+<a href="#">Home</a> &nbsp;&nbsp;
+<a href="#summary">Summary</a> &nbsp;&nbsp;
+<a href="#context">Context</a> &nbsp;&nbsp;
+<a href="#goals">Goals</a> &nbsp;&nbsp;
+<a href="#team">Team</a> &nbsp;&nbsp;
+<a href="#events">Events</a> &nbsp;&nbsp;
+<a href="#papers">Papers</a> &nbsp;&nbsp;
+<a href="#contact">Contact</a>
+<td width=100>
+</table>
+</div>
+
+<br><br><br><br>
+
+<table>
+<tr valign=top><td width=100>
+<font color="#dddddd" size=4>
+<td>
+
+<h1>Nekoka<br>
+<font size=5>Realizing the Promise of Higher-Order SMT and Superposition for Interactive Verification</font>
+</h1>
+
+<br>
+
+<div class="container">
+<p>
+<table>
+<tr><td rowspan=3 align=right valign=center><img src="eu_flag_yellow_low.jpg" width="100px" border="0" name="European Union flag">&nbsp;&nbsp;&nbsp;
+<td><font size=+1><a href="https://erc.europa.eu">European Research Council (ERC) Consolidator Grant 2022</a></font>
+<!-- TODO: Change "proposal" to "agreement" once signed. -->
+<!-- TODO: Fix dates once known. -->
+<tr><td colspan=2><a href="http://cordis.europa.eu/project/rcn/207590_en.html">Grant proposal No. 101083038</a>
+<tr><td colspan=2>July 2023 &ndash; June 2028 (expected)
+<tr><td>&nbsp;
+<tr><td>&nbsp;
+<!-- TODO: Fix my affiliation and my home page. -->
+<tr><td align=right><i>Principal&nbsp;investigator:</i>&nbsp;&nbsp;
+  <td><a href="https://people.mpi-inf.mpg.de/~jblanche/">Jasmin Blanchette</a><!--, Ludwig-Maximilians-Universität München-->
+<tr><td>&nbsp;
+<!-- TODO: Add host institution. -->
+<!--
+<tr><td align=right><i>Host institution:</i>&nbsp;&nbsp;
+  <td><a href="http://www.vu.nl/en/">Vrije Universiteit Amsterdam</a>, the Netherlands
+-->
+</table>
+</div>
+
+<br>
+<a name="summary">
+<h2>Summary</h2>
+
+<p>Proof assistants (also called interactive theorem provers) have a long
+history of being very tedious to use. The situation has improved markedly in the
+past decade with the integration of first-order automatic theorem provers as
+backends. And recently, there have been exciting developments for more
+expressive logics, with the emergence of automatic provers based on optimized
+higher-order calculi. The Nekoka project's aim is to make higher-order SMT and
+λ-superposition a perfect fit for logical problems emerging from the
+verification of software and mathematics.</p>
+
+<p>We will start by extending higher-order SMT and λ-superposition and
+implementing them in automatic provers to provide push-button proof automation
+for lemmas expressed in higher-order logics. To reach end users, we will
+integrate the automatic provers in interactive tools: both general-purpose proof
+assistants and software verification platforms. As case studies, we will use our
+own provers and integrations to formalize quantum information theory and verify
+a big data framework in collaboration with domain experts. Beyond providing
+representative case studies, this will help build a user community around our
+tools and technologies.</p>
+
+<p>In terms of scientific impact, the improved higher-order SMT and
+λ-superposition calculi will substantially advance the art of higher-order
+automation and help reorient research in automated reasoning towards the needs
+of end users, whether computer scientists or mathematicians. Our tools will
+outlive the project, serving end users and continuing to be useful for future
+research. At the societal level, the project will herald a future in which
+automatic provers and proof assistants are routinely deployed in tandem to
+verify critical computing infrastructure and to formalize research in computer
+science and mathematics, thereby leading to more trustworthy software and
+science.</p>
+
+<br>
+<a name="context">
+<h2>Context and state of the art (anno 2023)</h2>
+
+<p>
+Theorem proving software has been around for a long time, starting with the
+Logic Theorist in 1955. Automatic theorem provers and interactive proof
+assistants are used in industry to verify hardware (e.g., by AMD, Centaur
+Technologies, Intel) and software (e.g., by Airbus, Amazon, Apple, Facebook,
+Google, Microsoft), but compared with other branches of computer science, the
+impact of theorem proving on science and industry remains limited.
+
+<p>
+A few examples of software verified using theorem provers are the
+optimizing C compiler CompCert, the operating system
+kernels CertiKOS and seL4, the
+conference management system CoCon, and the SAT
+(satisfiability) solver IsaSAT. But despite having been
+carried out using Coq and Isabelle, two modern proof assistants, these efforts
+were very time consuming. For example, verifying less than 10 000 lines of
+code took the seL4 team around 20 person-years, and the pure
+mathematicians who have embraced the Lean proof assistant, notably Kevin Buzzard,
+report that formally verifying a single &ldquo;obvious&rdquo; step can take an
+arbitrarily long time. To most potential users, the tools are not yet
+cost-effective.
+
+<p>
+The current situation is unfortunate, to say the least. Writing a pen-and-paper
+proof is akin to developing a program as pseudocode, without using a compiler or
+an integrated development environment. The process is awkward and error-prone.
+Despite its weaknesses, existing theorem proving software can already be
+useful to many computer scientists, engineers, and even mathematicians.
+Computers outperform humans for complex logical reasoning tasks, which are
+crucial in many areas.
+
+<p>
+The Nekoka project's vision is to develop highly flexible interactive
+verification tools that incorporate very strong proof automation, broadening
+the range of problems for which computers can assist humans. Proof steps
+that are obvious to the user but currently require hours of focused labor will
+become largely or fully automatic. These tools will support general-purpose
+reasoning and combinations of proof techniques. They will revolutionize the
+practice of software verification and formalized mathematics.
+
+<blockquote>
+<b>Example 1.</b>
+To show the gulf between the state of the art and the vision, we consider
+the CoCon conference management system, which was verified to
+ensure the absence of leaks. Below is the Isabelle proof of the claim that program committee
+members cannot review papers if they have a conflict of interest:
+
+<blockquote>
+proof <font style="background-color: #ffe4f1;">(cases a)</font><br>
+&nbsp;&nbsp;case (Create c)<br>
+&nbsp;&nbsp;show ?thesis<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font style="background-color: #ffe4f1;">using Step isRev reach.Step by simp</font><br>
+next<br>
+&nbsp;&nbsp;case (Update u)<br>
+&nbsp;&nbsp;show ?thesis<br>
+&nbsp;&nbsp;proof <font style="background-color: #ffe4f1;">(cases u)</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;case (UpdatePref confID uID p paperID pref)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;thus ?thesis<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font style="background-color: #ffe4f1;">using Step unfolding Update UpdatePref isRev_def2</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font style="background-color: #ffe4f1;">by (blast dest: isRevNth reach.Step)</font><br>
+&nbsp;&nbsp;qed<br>
+next<br>
+&nbsp;&nbsp;case (NondestUpdate nu)<br>
+&nbsp;&nbsp;show ?thesis<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font style="background-color: #ffe4f1;">using Step unfolding NondestUpdate isRev_def2</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font style="background-color: #ffe4f1;">by (meson IO.reach.Step isRevNth)</font><br>
+qed <font style="background-color: #ffe4f1;">simp+</font>
+</blockquote>
+
+<p>
+Isabelle proofs are hierarchical and exhibit a block structure reflected by the
+indentation. The parts highlighted in pink, supplied by the user, correspond to
+the actual proof steps; they required some thinking and interactions with the
+system. The rest specifies the proof outline: a three-way case
+analysis, whose second case is itself a case analysis. The three outer cases
+are labeled Create, Update, and NondestUpdate.
+
+<p>
+The proof may easily have taken 15 minutes to develop. It combines various
+types of automation. User productivity would skyrocket if such proofs could be
+entirely generated at the click of a button.
+</blockquote>
+
+<p>
+Today we see several elements of the above vision in a variety of tools. The
+most widely deployed theorem provers are likely SAT and
+SMT (satisfiability modulo theories) solvers.
+Their great strength is
+that they are reliable enough to serve as backends to dozens of software
+verification and testing platforms as a push-button technology.
+On the other hand,
+their logics are restrictive. Users often find it more convenient to express
+their problems in higher-order logics such as simple type theory and dependent
+type theory. HOSMT (higher-order SMT) has
+been proposed but is in its infancy.
+Next to SAT and SMT solvers, another family of
+successful automatic provers consists of those based on the superposition
+calculus,
+a successor of the resolution calculus. Recently, my team developed
+λ-superposition for simple type theory.
+
+<p>
+At the other end of the automatic–interactive scale, we have the proof
+assistants, most of which are based on simple or dependent type theory. These
+tools offer a graphical user interface that can be used to develop large proofs
+interactively. Their richer logic makes it possible to use higher-order
+functions (e.g., map and fold on lists), big operators, set comprehensions, the
+big O notation, monads, and more.
+
+<p>
+SMT solvers and superposition provers are integrated as backends to proof
+assistants to increase the level of automation. Such integrations are called
+<em>hammers</em>. Hammers encode the problem in the automatic
+provers' less expressive logic and translate any proofs found in the other
+direction. In Example 1, the &ldquo;by (meson IO...)&rdquo; command near the end
+was generated by Sledgehammer, the hammer for Isabelle.
+
+<!--
+<p>
+For a long time, the most successful hammer backends supported only first-order
+logic, but recently there has been a breakthrough in the development of
+strong higher-order automatic provers. To see this, it suffices to take a look
+at the results of the higher-order division of the 2020 edition of the CASC
+prover competition:
+
+\medskip\smallskip
+
+\noindent
+\begin{tabularx}{\textwidth}{|X|cccccc|}
+\hline
+\rowcolor{goodboxbackground}
+\afterhline
+       & \!\SC Zipperposition\! & \!\SC Satallax\! & \SC Vampire & \SC Leo-III & \SC CVC4 & \SC Leo-II \\
+\hline\afterhline
+Solved problems (of 500) & \textbf{424} & 323 & 299 & 287 & 194 &	111 \\
+\hline
+\end{tabularx}
+
+\medskip\smallskip
+
+\noindent
+A cell containing \textit{n} tells us that the prover solved
+\textit{n} out of 500 problems with a %wall-clock
+time limit of 120\,s per problem.
+%
+{\SC Leo}-II
+represents the state of the art five years ago. Since then,
+Satallax---the leader until 2019---has gained a lot of ground,
+and a new generation of
+higher-order provers has emerged:\ the winning Zipperposition,
+developed by my team and based on \textlambda{}-superposition,
+and also Vampire,
+Leo-III,
+and CVC4 (now cvc5),
+developed by other teams.
+The results from CASC 2021 only confirmed this picture.
+Within five years, largely thanks to my ERC
+project {\SC Matryoshka}, strong higher-order automation has taken the step from
+music of the future to reality.
+
+{\SC Matryoshka} has produced remarkable results, but it has also raised new
+scientific questions and opened up new possibilities. Reliable push-button proof
+automation for typical real-world applications (as opposed to the logical
+puzzles that are common among CASC benchmarks) now seems within reach. But to
+make \emph{this} a reality, we must overcome the following challenges:
+
+\smallskip
+
+\begin{itemize}
+\item \emph{Out of tune}:\enskip
+  Higher-order automatic provers today are almost exclusively tuned against the
+  benchmark library used for CASC. They disappoint on problems originating from
+  hammers, which tend to be fundamentally less higher-order but involve hundreds
+  of superfluous axioms.
+
+\smallskip
+
+\item \emph{Lost in deduction}:\enskip
+  The most successful theorem proving approaches replace heuristic deduction by
+  focused computation wherever they can. SMT solvers with their support for
+  decidable theories are a prime example. Nobody has yet looked into the
+  optimization of big operators and many other practical
+  higher-order theories.
+
+\smallskip
+
+\item \emph{No dependent types}:\enskip
+  The proof assistants Agda, Coq, and Lean are based on dependent type theory,
+  but higher-order provers support only simple types. Dependent types are useful
+  for
+  \textit{m}\,$\times$\,\textit{n} matrices,
+  integers modulo \textit{n},
+  families ($\textit{X}_\textit{i}$)$_\textit{i}$,
+  and
+  \textit{p}-adic numbers.
+  Today they must be translated using
+  clumsy, inefficient encodings.
+
+\smallskip
+
+\item \emph{Opaque failures}:\enskip
+  Successful solvers typically give users some information, such as a potential
+  countermodel, on failure. However, the current
+  generation of higher-order provers provide no guidance when they time out.
+\end{itemize}
+
+%\smallskip
+
+\begin{badbox}\strut
+Exciting higher-order reasoning techniques are emerging in automatic theorem
+provers, which could lead to push-button automation in \textbf{highly efficient
+verification tools}. More research is needed to develop the potential of these
+technologies and deploy them in science and industry.%
+\strut\end{badbox}
+
+Although verification of
+all software will never be practical, we should aim at verifying safety- and
+security-critical systems, starting with the libraries they build on. The
+high-profile bug found in Android's, Java's and Python's sorting procedure,
+detected during verification, is a stark reminder of the
+relevance of formal methods. In mathematics, a similar reminder is provided by
+Fasel's retraction of his 2016 article in the
+prestigious \emph{Annals of Mathematics}. By relying to a
+greater extent on computers to develop and check proofs, practitioners and
+researchers can achieve much higher quality standards for software and science.
+
+
+<br>
+<a name="goals">
+<h2>Challenges and objectives</h2>
+
+<h3>Objective 1: TODO</h3>
+
+<h3>Objective 2: TODO</h3>
+
+<h3>Objective 3: TODO</h3>
+
+-->
+
+<br>
+<a name="team">
+<h2>The Nekoka Team</h2>
+
+<h3>Funded by the project</h3>
+
+<a href="https://people.mpi-inf.mpg.de/~jblanche/">Jasmin Blanchette</a><!--, Ludwig-Maximilians-Universität München-->
+
+<h3>Senior collaborators</h3>
+
+<a href="http://www.iro.umontreal.ca/~dupuisf/">Frédéric Dupuis</a>, Université de Montréal<br>
+<a href="https://scholar.google.com/citations?user=wU349w0AAAAJ&hl=ja">Gabriel Ebner</a>, Microsoft Research<br>
+<a href="https://www.cs.cmu.edu/~mheule/">Marijn Heule</a>, Carnegie Mellon University<br>
+<a href="https://homepage.cs.uiowa.edu/~ajreynol/">Andrew Reynolds</a>, University of Iowa<br>
+<a href="http://wwwlehre.dhbw-stuttgart.de/~sschulz/DHBW_Stephan_Schulz/Stephan_Schulz.html">Stephan Schulz</a>, DHBW Stuttgart<br>
+<a href="https://www.microsoft.com/en-us/research/people/nswamy/">Nikhil Swamy</a>, Microsoft Research<br>
+<a href="http://www.mpi-inf.mpg.de/departments/automation-of-logic/people/sophie-tourret/">Sophie Tourret</a>, Inria Nancy<br>
+<a href="https://di.ku.dk/english/staff/?pure=en/persons/682552">Dmitriy Traytel</a>, Københavns Universitet
+
+<br>
+<a name="events">
+<h2>Events</h2>
+
+<br>
+<a name="papers">
+<h2>Papers</h2>
+
+TODO
+
+<br>
+<a name="contact">
+<h2>Contact</h2>
+
+<p>Please contact <a href="https://people.mpi-inf.mpg.de/~jblanche/">Jasmin
+Blanchette</a> if you have inquiries related to the project.<p>
+
+<!-- TODO: Revive, and change Horizon 2020.
+<br>
+<br>
+<br>
+<div class="sticker">
+  <table>
+    <tbody><tr>
+      <td>&nbsp;
+      <td><img src="eu_flag_yellow_low.jpg" width="50px" border="0" name="European Union flag"></td>
+      <td>&nbsp;&nbsp;&nbsp;
+      <td>This project has received funding from the European Union's Horizon Europe research and innovation program
+        under grant agreement No. 101083038.&nbsp;&nbsp;</td>
+    </tr>
+  </tbody></table>
+</div>
+-->
+
+<br>
+<br>
+<br>
+
+<td width=100>
+</table>
+
+</body>
