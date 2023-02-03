@@ -109,7 +109,7 @@ a big data framework in collaboration with domain experts. Beyond providing
 representative case studies, this will help build a user community around our
 tools and technologies.</p>
 
-<p>In terms of scientific impact, the improved higher-order SMT and
+<p>In terms of scientific impact, our hope is that the improved higher-order SMT and
 λ-superposition calculi will substantially advance the art of higher-order
 automation and help reorient research in automated reasoning towards the needs
 of end users, whether computer scientists or mathematicians. Our tools will
@@ -224,8 +224,7 @@ been proposed but is in its infancy.
 Next to SAT and SMT solvers, another family of
 successful automatic provers consists of those based on the superposition
 calculus,
-a successor of the resolution calculus. Recently, my team developed
-λ-superposition for simple type theory.
+a successor of the resolution calculus.
 
 <p>
 At the other end of the automatic–interactive spectrum, we have the proof
@@ -383,7 +382,7 @@ management—checking that definitions are well formed and that every stated
 lemma is proved. Developing a proof is much like coding a program in an
 integrated development environment. All interactive tools provide some
 automation, and when automation fails, users can specify a proof outline like in
-Example~1 above. For instance, if the step from lemma <em>L</em>
+Example 1 above. For instance, if the step from lemma <em>L</em>
 to lemma <em>N</em> is too difficult, the user can state an intermediate
 lemma <em>M</em> and then derive <em>N</em> from <em>M</em> and <em>M</em> from
 <em>L</em>. Induction and case analysis must normally be applied by the user as
@@ -399,6 +398,7 @@ SMT solvers can often provide useful potential counterexamples, and the output
 of superposition provers could also be analyzed to provide helpful hints to the
 user.
 
+<p>
 The grand challenge will be met by pursuing three objectives. Our starting point
 is that there is a lot of scientific value in pursuing the following activities
 within a single team: developing higher-order proof calculi, implementing them
@@ -478,7 +478,7 @@ When reconstructing proofs in Isabelle or Lean, the hammer will put in a
 
 <blockquote style="background-color: #f7f7f7;">
 <b>Example 2.</b>
-Consider the Isabelle proof presented in \hyperlink{example1}{Example~1}. The
+Consider the Isabelle proof presented in Example 1. The
 envisioned automation might prove all but the most difficult, second case
 (Update). A future Sledgehammer would then generate the proof text below:
 
